@@ -14,11 +14,19 @@ public class ChessGUI
    JFrame mainFrame;
    JPanel mainPanel;
    JLabel instructions;
+  
    //TicTacToeBoard board;
    //ControllerInterface controller;
    public ChessGUI()
    {
-      //this.board = board;
+    JButton[] squares = new JButton[64];
+    JPanel board = new JPanel();
+    for(int i = 0; i<64; i++){
+    squares[i] = new JButton();
+    board.add(squares[i]);
+    }
+    board.setLayout(new GridLayout(8, 8));
+        //this.board = board;
       //this.controller = controller;
 
       // register this object as the observer of the game
@@ -42,7 +50,7 @@ public class ChessGUI
       this.instructions = new JLabel("");
       this.instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
       this.mainPanel.add(instructions);
-
+      mainPanel.add(board);
       //this.buttons.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
       // make the buttons panel "see-through"
       //this.buttons.setOpaque(false);
