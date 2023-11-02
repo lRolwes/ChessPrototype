@@ -14,27 +14,34 @@ public class ChessGUI
    JFrame mainFrame;
    JPanel mainPanel;
    JLabel instructions;
-  
-   //TicTacToeBoard board;
-   //ControllerInterface controller;
+ 
    public ChessGUI()
    {
     JButton[] squares = new JButton[64];
     JPanel board = new JPanel();
+    int row = 0;
+    int col = 0;
     for(int i = 0; i<64; i++){
-    squares[i] = new JButton();
-    board.add(squares[i]);
+        squares[i] = new JButton();
+        squares[i].setPreferredSize(new Dimension(50,50));
+        if((row+col)%2==1){
+            squares[i].setBackground(Color.BLACK);
+        }
+        else{
+            squares[i].setBackground(Color.WHITE);
+
+        }
+        if(col ==7){
+            col = 0;
+            row++;
+        }
+        else{
+            col++;
+        }
+        board.add(squares[i]);
     }
     board.setLayout(new GridLayout(8, 8));
-        //this.board = board;
-      //this.controller = controller;
 
-      // register this object as the observer of the game
-      //this.board.register(this); 
-
-      // set up the user interface
-      //this.buttons = new TicTacToeButtons(board, this);
-      //this.buttons.setPreferredSize(new Dimension(2000,2000));
       this.mainFrame = new JFrame("Chess");
       this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -47,14 +54,10 @@ public class ChessGUI
       // add some padding to the edges of the main panel
       this.mainPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
-      this.instructions = new JLabel("");
+      this.instructions = new JLabel("Welcome to ChessMaster!");
       this.instructions.setAlignmentX(Component.CENTER_ALIGNMENT);
       this.mainPanel.add(instructions);
       mainPanel.add(board);
-      //this.buttons.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-      // make the buttons panel "see-through"
-      //this.buttons.setOpaque(false);
-      //this.mainPanel.add(buttons);
 
       this.mainFrame.add(mainPanel);
 
